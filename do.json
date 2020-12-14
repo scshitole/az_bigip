@@ -5,7 +5,7 @@
     "label": "Onboard BIG-IP",
     "Common": {
         "class": "Tenant",
-        "hostname": "azure.${local_host}",
+        "hostname": "${local_host}.azure",
         "dbVars": {
             "class": "DbVariables",
             "ui.advisory.enabled": true,

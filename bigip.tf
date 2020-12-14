@@ -58,6 +58,134 @@ resource "azurerm_network_security_group" "main" {
     destination_address_prefix = "*"
   }
 
+  security_rule {
+    name                       = "allow_8500"
+    description                = "Allow Consul access"
+    priority                   = 140
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "8500"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+  security_rule {
+    name                       = "allow_8600"
+    description                = "Allow Consul Access"
+    priority                   = 150
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "8600"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "allow_8301"
+    description                = "Allow Consul Access"
+    priority                   = 160
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "8301"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "allow_8302"
+    description                = "Allow Consul Access"
+    priority                   = 170
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "8302"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "allow_8300"
+    description                = "Allow Consul Access"
+    priority                   = 180
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "8300"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "allow_8301_udp"
+    description                = "Allow Consul Access"
+    priority                   = 181
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Udp"
+    source_port_range          = "*"
+    destination_port_range     = "8301"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "allow_8302_udp"
+    description                = "Allow Consul Access"
+    priority                   = 182
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Udp"
+    source_port_range          = "*"
+    destination_port_range     = "8302"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "allow_DNS"
+    description                = "Allow Consul Access"
+    priority                   = 183
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "8600"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "allow_DNS_udp"
+    description                = "Allow Consul Access"
+    priority                   = 184
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Udp"
+    source_port_range          = "*"
+    destination_port_range     = "8600"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "allow_8600_UDP"
+    description                = "Allow Consul Access"
+    priority                   = 186
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Udp"
+    source_port_range          = "*"
+    destination_port_range     = "8600"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
   tags = {
     Name        = "${var.environment}-bigip-sg"
     environment = var.environment
@@ -122,7 +250,7 @@ data "template_file" "as3_json" {
 }
 
 data "template_file" "ts_json" {
-  template   = file("${path.module}/ts.json")
+  template = file("${path.module}/ts.json")
 
   vars = {
     region      = var.location
@@ -208,6 +336,8 @@ resource "azurerm_linux_virtual_machine_scale_set" "f5vmss" {
     group       = var.group
     costcenter  = var.costcenter
     application = var.application
+    key         = "Env"
+    value       = "consul"
   }
 }
 
