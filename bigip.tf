@@ -218,7 +218,7 @@ data "template_file" "vm01_do_json" {
   template = file("${path.module}/do.json")
 
   vars = {
-    local_host         = "-device-hostname-"
+    local_host         = "-device.hostname-"
     local_selfip       = "-external-self-address-"
     gateway            = var.ext_gw
     dns_server         = var.dns_server
