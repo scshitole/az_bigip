@@ -265,7 +265,7 @@ data "template_file" "ts_json" {
  
 # Create F5 BIG-IP VMs
 resource "azurerm_linux_virtual_machine_scale_set" "f5vmss" {
-  name                            = "${var.prefix}-f5vmss"
+  name                            = "${var.prefix}rg-f5vmss"
   location                        = azurerm_resource_group.main.location
   resource_group_name             = azurerm_resource_group.main.name
   sku                             = var.instance_type
