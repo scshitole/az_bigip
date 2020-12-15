@@ -1,5 +1,4 @@
-# Variables
-
+# Variables 
 # Azure Environment
 variable "sp_subscription_id" {}
 variable "sp_client_id" {}
@@ -9,6 +8,7 @@ variable "prefix" {}
 variable "uname" {}
 variable "upassword" {}
 variable "location" {}
+  
 
 # NETWORK
 variable "cidr" { default = "10.90.0.0/16" }
@@ -20,6 +20,10 @@ variable "subnets" {
     "subnet3" = "10.90.3.0/24"
   }
 }
+
+# APP variables
+
+variable "app" {default = "app1" }
 variable "backend01ext" { default = "10.90.2.101" }
 variable "ext_gw" { default = "10.90.2.1" }
 

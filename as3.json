@@ -22,10 +22,10 @@
           "virtualAddresses": [
             "0.0.0.0"
           ],
-          "pool": "web_pool",
+          "pool": "${web_pool}",
           "serverTLS": "webtls"
         },
-        "web_pool": {
+        "${web_pool}": {
           "class": "Pool",
           "monitors": [
             "tcp"

@@ -190,6 +190,8 @@ hostName=$(echo $hostName | tr -s '-' '.')
 sed -i "s/-device.hostname-/$hostName/g" /config/do.json
 sed -i "s/-external-self-address-/$local_selfip/g" /config/do.json
 
+# Modify AS3 json replace web_pool with webpool
+
 # Submit DO Declaration
 echo -e "\n"$(date) "Submitting DO declaration"
 curl -u $CREDS -X POST -k https://localhost/$doUrl -d @/config/do.json
@@ -222,7 +224,7 @@ curl -u $CREDS -X POST -k https://localhost/$as3Url -d @/config/as3.json
 
 # Delete declaration files (do.json, as3.json) packages
 echo -e "\n"$(date) "Removing DO and AS3 declaration files"
-rm -rf /config/do.json /config/as3.json /config/ts.json
+# rm -rf /config/do.json /config/as3.json /config/ts.json
 
 # Done
 echo -e "\n"$(date) "===Onboard Complete==="
