@@ -226,5 +226,8 @@ curl -u $CREDS -X POST -k https://localhost/$as3Url -d @/config/as3.json
 echo -e "\n"$(date) "Removing DO and AS3 declaration files"
 # rm -rf /config/do.json /config/as3.json /config/ts.json
 
+# Enable BIG-IP for TS
+# tmsh modify analytics global-settings { external-logging-publisher /Common/Shared/telemetry_publisher offbox-protocol hsl use-offbox enabled  }
+
 # Done
 echo -e "\n"$(date) "===Onboard Complete==="

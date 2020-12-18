@@ -31,3 +31,9 @@ resource "azurerm_log_analytics_workspace" "law" {
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
 }
+
+# Create a random id
+
+resource "random_id" id {
+  byte_length = 4
+}
